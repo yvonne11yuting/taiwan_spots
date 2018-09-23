@@ -1,19 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import GoogleImages from "google-images";
-import { CSE_ID, API_KEY } from './js/constants/config';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxPromise from 'redux-promise';
 
-class ScenicSpots extends Component {
-  componentDidMount(){
-    const client = new GoogleImages(CSE_ID, API_KEY);
-    client.search('林口酒廠');
-  }
-  render() {
-    return (
-      <div>Hello World</div>
-    );
-  }
-}
+import reducers from './js/reducers';
+import ScenicSpots from './js/components/container/scenic_spots';
 
-const wrapper = document.getElementById("app");
-wrapper ? ReactDOM.render(<ScenicSpots />, wrapper) : false;
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+
+
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <ScenicSpots />
+  </Provider>
+  , document.getElementById("app"));

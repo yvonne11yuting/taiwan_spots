@@ -22,16 +22,18 @@ class ScenicSpots extends Component {
     // })
   }
   render() {
+    console.log(this.props.filterResult);
     return (
       <div>
-        <ScenicSpotsEach spots={ this.props.spots }/>
+        <ScenicSpotsEach spots ={ this.props.filterResult ? this.props.filterResult : this.props.all}/>
       </div>
     );
   }
 }
 
 function mapStateToProps({ spots }) {
-  return { spots };
+  let { all, filterResult } = spots;
+  return { all, filterResult };
 }
 
 function mapDispatchToProps(dispatch) {

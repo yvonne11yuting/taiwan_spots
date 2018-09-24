@@ -1,9 +1,12 @@
-import { GET_SPOTS } from '../constants/action-types';
+import { GET_SPOTS, FILTER_SPOTS } from '../constants/action-types';
 
-export default function(state = [], action) {
+export default function(state = { all: [] }, action) {
   switch(action.type) {
     case GET_SPOTS:
-      return [...state, ...action.payload.data];
+      return { ...state, all: action.payload.data };
+
+    case FILTER_SPOTS:
+      return { ...state, filterResult: action.payload }
   }
   return state;
 }

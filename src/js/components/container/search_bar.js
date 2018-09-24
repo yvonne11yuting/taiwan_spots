@@ -3,41 +3,39 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
+import { filterSpots } from '../../actions/index';
+
 class SearchBar extends Component {
   constructor() {
     super();
     this.state = {
-      searchTerm: ''
+      term: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    let searchTerm = e.target.value;
-    this.setState({searchTerm});
-
-    let filterSpots =  this.props.spots.filter(spot => {
-      let regex = new RegExp(searchTerm, 'g');
+    let term = e.target.value;
+    let filterResult =  this.props.spots.all.filter(spot => {
+      let regex = new RegExp(term, 'g');
       return regex.test(spot.Add) || regex.test(spot.Name);
     })
 
-    console.log(filterSpots);
-  }
-
-  filterSpots(term, spots) {
+    this.setState({term});
+    this.props.filterSpots(filterResult);
+    console.log(filterResult);
   }
 
   render() {
     return (
-      <form onSubmit="">
+      <div>
         <input type="text"
-          value={this.state.searchTerm}
+          value={this.state.term}
           onChange={this.handleChange}
           placeholder="請輸入想去的縣市或景點名稱"
         />
-        <button tpye="submit">搜尋</button>
-      </form>
+      </div>
     );
   }
 }
@@ -47,8 +45,8 @@ const mapStateToProps = ({spots}) => {
   return { spots };
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({ filterSearch }, dispatch);
-// }
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ filterSpots }, dispatch);
+}
 
-export default connect(mapStateToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

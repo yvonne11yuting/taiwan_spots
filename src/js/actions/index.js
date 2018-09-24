@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_SPOTS, SEARCH_TERM } from "../constants/action-types";
+import { GET_SPOTS, FILTER_SPOTS } from "../constants/action-types";
 
 export function getSpots(id = '') {
   const url = `https://taiwanspots.firebaseio.com/info${id && '/'+id}.json`;
@@ -11,9 +11,9 @@ export function getSpots(id = '') {
   };
 }
 
-export function searchTerm(term) {
+export function filterSpots(spots) {
   return {
-    type: SEARCH_TERM,
-    payload: term
+    type: FILTER_SPOTS,
+    payload: spots
   }
 }

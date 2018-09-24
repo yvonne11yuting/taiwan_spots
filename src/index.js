@@ -10,6 +10,8 @@ import App from './js/components/container/app';
 import SpotDetail from './js/components/container/spot_detail';
 import Layout from './js/hoc/layout';
 
+import './css/index.css';
+
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(

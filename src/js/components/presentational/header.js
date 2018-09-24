@@ -2,9 +2,9 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <div>
-      休假去哪裡！
-    </div>
+    <header className="header">
+      <span className="header-title">休假去哪裡！</span>
+    </header>
   );
 };
 

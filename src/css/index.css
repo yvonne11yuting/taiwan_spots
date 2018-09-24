@@ -1,0 +1,7 @@
+.header {
+  background: #eee;
+  .header-title {
+    padding: 10px;
+    background: #fff;
+  }
+}

@@ -52,8 +52,7 @@ class SpotDetail extends Component {
   }
 }
 
-const mapStateToProps = ({spots}) => {
-  let { all } = spots
+const mapStateToProps = ({spots:{all}}) => {
   return { all }
 }
 

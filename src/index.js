@@ -8,18 +8,19 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import reducers from './js/reducers';
 import App from './js/components/container/app';
 import SpotDetail from './js/components/container/spot_detail';
+import Layout from './js/hoc/layout';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
-      <div>
+      <Layout>
         <Switch>
           <Route path="/:id" component={SpotDetail}/>
           <Route path="/" component={App}/>
         </Switch>
-      </div>
+      </Layout>
     </BrowserRouter>
   </Provider>
   , document.getElementById("app"));

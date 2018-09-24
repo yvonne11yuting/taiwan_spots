@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ScenicSpotsEach = (props) => {
-  console.log(props.spots)
+const ScenicSpotsEach = ({spots}) => {
+  console.log(spots)
   return (
     <div>
-      child
+      {spots.map(spot => <div key={spot.Id}>{spot.Add}</div>)}
     </div>
   );
 };

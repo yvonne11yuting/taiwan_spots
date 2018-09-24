@@ -14,7 +14,7 @@ class ScenicSpots extends Component {
 
   componentDidMount(){
     const client = new GoogleImages(CSE_ID, API_KEY);
-    client.search('林口酒廠');
+    client.search('宏亞食品巧克力觀光工廠');
 
     this.props.getSpots();
     // axios.get('https://taiwanspots.firebaseio.com/Info.json').then(res => {

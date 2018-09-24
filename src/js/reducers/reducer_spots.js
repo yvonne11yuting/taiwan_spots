@@ -5,6 +5,5 @@ export default function(state = [], action) {
     case GET_SPOTS:
       return [...state, ...action.payload.data];
   }
-
   return state;
 }

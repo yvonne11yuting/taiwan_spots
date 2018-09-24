@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import GoogleImages from "google-images";
 
-import { CSE_ID, API_KEY } from '../../constants/config';
 import { getSpots } from '../../actions/index';
 import ScenicSpotsEach from '../presentational/scenic_spots_each';
 
@@ -13,19 +11,17 @@ class ScenicSpots extends Component {
   }
 
   componentDidMount(){
-    const client = new GoogleImages(CSE_ID, API_KEY);
-    client.search('宏亞食品巧克力觀光工廠');
-
     this.props.getSpots();
-    // axios.get('https://taiwanspots.firebaseio.com/Info.json').then(res => {
-    //   res.status === 200 && this.setState({infos: res.data})
-    // })
   }
+
+  renderSpots(spots) {
+    return spots.map(spot => <ScenicSpotsEach key={spot.Id} spot={spot}/>);
+  }
+
   render() {
-    console.log(this.props.filterResult);
     return (
       <div>
-        <ScenicSpotsEach spots ={ this.props.filterResult ? this.props.filterResult : this.props.all}/>
+        {this.renderSpots(this.props.filterResult || this.props.all)}
       </div>
     );
   }

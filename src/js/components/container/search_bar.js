@@ -17,14 +17,13 @@ class SearchBar extends Component {
 
   handleChange(e) {
     let term = e.target.value;
-    let filterResult =  this.props.spots.all.filter(spot => {
+    let filterResult = this.props.spots.all.filter(spot => {
       let regex = new RegExp(term, 'g');
       return regex.test(spot.Add) || regex.test(spot.Name);
     })
 
     this.setState({term});
-    this.props.filterSpots(filterResult);
-    console.log(filterResult);
+    this.props.filterSpots(filterResult)
   }
 
   render() {

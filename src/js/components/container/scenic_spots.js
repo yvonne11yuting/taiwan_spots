@@ -11,7 +11,9 @@ class ScenicSpots extends Component {
   }
 
   componentDidMount(){
-    this.props.getSpots();
+    if( this.props.all.length === 0 ) {
+      this.props.getSpots();
+    }
   }
 
   renderSpots(spots) {

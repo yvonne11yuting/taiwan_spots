@@ -1,14 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import GoogleImages from "google-images";
-
-import { CSE_ID, API_KEY } from '../../constants/config';
 
 const ScenicSpotsEach = ({spot}) => {
-
-  // const client = new GoogleImages(CSE_ID, API_KEY);
-  // client.search(spot.Name);
-
   return (
     <section>
       <Link to={`/${spot.Id}`}><img src={`https://dummyimage.com/150x100/cccccc/333333.jpg`} alt={spot.Name}/></Link>

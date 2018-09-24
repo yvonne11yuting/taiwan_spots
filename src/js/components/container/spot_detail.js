@@ -6,8 +6,8 @@ import GoogleImages from "google-images";
 
 import { CSE_ID, API_KEY } from '../../constants/config';
 class SpotDetail extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       detail: {},
       images: []

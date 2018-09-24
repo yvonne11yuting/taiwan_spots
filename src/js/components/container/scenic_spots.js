@@ -6,10 +6,6 @@ import { getSpots } from '../../actions/index';
 import ScenicSpotsEach from '../presentational/scenic_spots_each';
 
 class ScenicSpots extends Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount(){
     if( this.props.all.length === 0 ) {
       this.props.getSpots();

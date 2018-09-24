@@ -6,8 +6,8 @@ import _ from 'lodash';
 import { filterSpots } from '../../actions/index';
 
 class SearchBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       term: ''
     }

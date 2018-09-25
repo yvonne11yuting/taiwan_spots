@@ -28,7 +28,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div class="align-center">
+      <div className="align-center">
         <input type="text"
           value={this.state.term}
           onChange={this.handleChange}

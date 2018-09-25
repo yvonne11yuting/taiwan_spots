@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
     <header className="header">
-      <span className="header-title">休假去哪裡！</span>
+      <Link to="/" className="header-title">休假去哪裡！</Link>
     </header>
   );
 };

@@ -1,7 +1,38 @@
+.align-center {
+  text-align: center;
+}
+
 .header {
-  background: #eee;
-  .header-title {
-    padding: 10px;
-    background: #fff;
+  padding: 16px 0;
+  background: #59c2ff;
+  margin-bottom: 20px;
+}
+
+.header-title {
+  font-size: 20px;
+  padding: 0 10px;
+  text-decoration: none;
+  color: #fff;
+  text-shadow: 0 1px #969696;
+}
+:focus{
+  outline: none;
+}
+
+.search-bar-input:focus {
+  border-bottom: 2px solid #05a0fb;
+  transition: 0.3s;
+}
+
+.search-bar-input {
+  width: 600px;
+  padding: 5px;
+  border: 0;
+  border-bottom: 2px solid #999;
+  font-size: 16px;
+  letter-spacing: .5px;
+
+  :focus {
+    background-color: yellow;
   }
 }

@@ -1,3 +1,7 @@
+body {
+  background: #efefef;
+}
+
 .align-center {
   text-align: center;
 }
@@ -25,14 +29,38 @@
 }
 
 .search-bar-input {
-  width: 600px;
+  width: 90%;
   padding: 5px;
   border: 0;
   border-bottom: 2px solid #999;
   font-size: 16px;
   letter-spacing: .5px;
+  background: #efefef;
+}
 
-  :focus {
-    background-color: yellow;
+.spot-container {
+  width: 90%;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 20px;
+}
+
+.spot {
+  padding: 20px;
+  background: #fff;
+  box-shadow: 1px 1px 1px #ccc;
+  text-decoration: none;
+}
+
+@media(min-width: 320px) and (max-width: 600px) {
+  .spot-container {
+    grid-template-columns: auto;
+  }
+}
+
+@media(min-width : 768px) and (max-width : 1024px) {
+  .spot-container {
+    grid-template-columns: auto auto;
   }
 }

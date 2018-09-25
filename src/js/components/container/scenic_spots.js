@@ -18,7 +18,7 @@ class ScenicSpots extends Component {
 
   render() {
     return (
-      <div>
+      <div className="spot-container">
         {this.renderSpots(this.props.filterResult || this.props.all)}
       </div>
     );

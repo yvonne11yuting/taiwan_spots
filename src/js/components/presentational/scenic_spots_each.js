@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 const ScenicSpotsEach = ({spot}) => {
   return (
-    <section>
-      <Link to={`/${spot.Id}`}><img src={`https://dummyimage.com/150x100/cccccc/333333.jpg`} alt={spot.Name}/></Link>
+    <Link className="spot" to={`/${spot.Id}`}>
+      <img src={`https://dummyimage.com/300x200/cccccc/333333.jpg`} alt={spot.Name}/>
       <div>
-        <h3><Link to={`/${spot.Id}`}>{spot.Name}</Link></h3>
+        <h3>{spot.Name}</h3>
         <span><b>電話 </b>{spot.Tel}</span><br/>
         <span><b>地址 </b>{spot.Add}</span>
       </div>
-    </section>
+    </Link>
   );
 };
 

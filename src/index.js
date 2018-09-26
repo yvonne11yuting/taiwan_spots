@@ -11,8 +11,6 @@ import SpotDetail from './js/components/container/spot_detail';
 import Layout from './js/hoc/layout';
 
 import './css/main.css';
-import db from './db.json';
-console.log(db)
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 

@@ -19,7 +19,7 @@ class SearchBar extends Component {
     let term = e.target.value;
     let filterResult = this.props.spots.all.filter(spot => {
       let regex = new RegExp(term, 'g');
-      return regex.test(spot.Add) || regex.test(spot.Name);
+      return regex.test(spot.address) || regex.test(spot.name);
     })
 
     this.setState({term});

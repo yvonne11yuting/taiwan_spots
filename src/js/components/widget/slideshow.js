@@ -25,8 +25,8 @@ class SlideShow extends Component {
     let eachImgLengthWithMargin = eachImgLength + gap;
     let images = this.props.images;
     let imagesAmount = images.length;
-    let matchImages = images.map(({thumbnail, image}) => {
-      return amount === 1 ? image : thumbnail;
+    let matchImages = images.map(({thumbnail, imgUrl}) => {
+      return amount === 1 ? imgUrl : thumbnail;
     });
 
     return (
@@ -45,7 +45,7 @@ class SlideShow extends Component {
         >&gt;</a>
         <div
           className="slideshow-image-container"
-          style={ { width: `${eachImgLength }px`, height: `${eachImgLength}px` } }
+          style={ { height: `${eachImgLength}px` } }
         >
           <ul
             className="slideshow-image-wrap"
@@ -75,7 +75,8 @@ class SlideShow extends Component {
   }
 
   render() {
-    let hasImages = this.props.images.length > 0;
+    console.log(this.props.images);
+    let hasImages = this.props.images && this.props.images.length > 0;
     return (
       <div>
         {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LazyLoad from 'react-lazyload';
 import '../../../css/slideshow.css'
 
 class SlideShow extends Component {
@@ -61,6 +62,7 @@ class SlideShow extends Component {
           className="slideshow-arrow"
           style={{
             height: `${eachImgLength}px`,
+            display: this.state.disabledDirection === this.refs.arrorLeft ? 'none' : 'flex',
             pointerEvents: this.state.disabledDirection === this.refs.arrorLeft ? 'none' : 'auto'
           }}
           onClick={event => this.moveImg({
@@ -75,6 +77,7 @@ class SlideShow extends Component {
           style={{
             height: `${eachImgLength}px`,
             right: 0,
+            display: this.state.disabledDirection === this.refs.arrorRight ? 'none' : 'flex',
             pointerEvents: this.state.disabledDirection === this.refs.arrorRight ? 'none' : 'auto'
           }}
           onClick={event => this.moveImg({
@@ -107,12 +110,14 @@ class SlideShow extends Component {
                 className="align-center"
                 onMouseOver={() => this.updateCurrentImg(i)}
               >
+                <LazyLoad height={200} once>
                 <img
                   src={image}
                   alt={this.props.alt}
                   title={this.props.title}
                   className="slideshow-image-img"
                 />
+                </LazyLoad>
               </li>
             ))}
           </ul>

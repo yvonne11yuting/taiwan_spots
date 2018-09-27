@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { showSignIn } from '../../actions';
 import { withRouter } from 'react-router-dom';
+import ScrollBackToTop from '../../components/widget/scroll_back_to_top';
 class Header extends Component {
   render() {
     const { history, location:{ pathname } } = this.props;
@@ -21,6 +22,7 @@ class Header extends Component {
           title="記錄你的口袋景點吧！"
           onClick={() => this.props.showSignIn(true)}
         >登入</a>
+        <ScrollBackToTop/>
       </header>
     );
   }

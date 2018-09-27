@@ -1,0 +1,16 @@
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  color: #efefef;
+  background: #6666666e;
+  border-radius: 50px;
+  padding: 20px;
+  font-family: arial,sans-serif;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}

@@ -12,12 +12,12 @@ class SignIn extends Component {
     const className = `form-group ${touched && error ? "has-danger" : ""}`;
 
     return (
-      <div>
+      <div className="form-group">
         <label>{field.label}</label>
         <input className="form-control" type="text" {...field.input} autoComplete="off"/>
-        <div className="text-help">
+        <span className="form-err-msg">
           {touched ? error : ""}
-        </div>
+        </span>
       </div>
     );
   }
@@ -35,18 +35,31 @@ class SignIn extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <form className="sign-in">
-        <Field name="email" label="帳號" component={this.renderField} />
-        <Field name="pwd" label="密碼" component={this.renderField} />
-        <button type="submit" onClick={
-          handleSubmit(({email, pwd}) => {
-            this.onSubmit({email, pwd, type:"register"})
-        })}>註冊</button>
-        <button type="submit" onClick={
-          handleSubmit(({email, pwd}) => {
-            this.onSubmit({email, pwd, type:"signin"})
-        })}>登入</button>
-      </form>
+      <div className="sign-in">
+        <form className="sign-in-form">
+          <Field name="email" label="帳號" component={this.renderField} />
+          <Field name="pwd" label="密碼" component={this.renderField} />
+          <div className="form-action">
+            <button
+              type="submit"
+              className="btn btn-submit"
+              onClick={
+              handleSubmit(({email, pwd}) => {
+                this.onSubmit({email, pwd, type:"signin"})
+              })}
+            >登入</button>
+            <button
+              type="submit"
+              className="btn btn-default"
+              onClick={
+              handleSubmit(({email, pwd}) => {
+                this.onSubmit({email, pwd, type:"register"})
+              })}
+            >註冊</button>
+            <a className="btn btn-light" onClick={() => this.props.hideSignin()}>取消</a>
+          </div>
+        </form>
+      </div>
     );
   }
 }

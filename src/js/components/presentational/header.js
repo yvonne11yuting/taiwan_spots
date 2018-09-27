@@ -16,7 +16,7 @@ class Header extends Component {
     return (
       <header className="align-center header">
         <Link to="/" className="header-title">休假去哪裡！</Link>
-        <button onClick={() => this.setState({signInFlag: true})}>登入</button>
+        <a className="btn btn-link" onClick={() => this.setState({signInFlag: true})}>登入</a>
         { this.state.signInFlag && <SignIn hideSignin={() => this.setState({signInFlag: false})}/> }
 
       </header>

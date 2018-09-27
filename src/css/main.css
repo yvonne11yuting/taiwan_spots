@@ -3,17 +3,31 @@ body {
   background: #efefef;
 }
 
+.main {
+  margin-top: 100px;
+}
+
 .align-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.sticky-header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
 .header {
-  padding: 16px;
+  padding: 16px 0;
   background: #59c2ff;
-  margin-bottom: 20px;
   justify-content: space-between;
+  box-shadow: 0px 0px 1px 1px #999;
+}
+
+.header-right {
+  margin-right: 25px;
 }
 
 .header-title {
@@ -96,7 +110,7 @@ body {
 
 .spot-detail {
   width: 90%;
-  margin: 0 auto;
+  margin: 100px auto 0;
 }
 
 .spot-detail-title {
@@ -106,48 +120,6 @@ body {
 
 .spot-detail-content {
   line-height: 1.5;
-}
-
-.btn-back {
-  text-decoration: none;
-  display: inline-block;
-  width: 50px;
-  height: 30px;
-  line-height: 30px;
-  color: #999;
-  border: 2px solid #59c2ff;
-  background: #fff;
-  position: relative;
-  text-align: center;
-  margin-left: 30px;
-  &::before {
-    content: "";
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 20px 20px 20px 0;
-    border-color: transparent #59c2ff transparent transparent;
-    position: absolute;
-    left: -20px;
-    top: -5px;
-  }
-
-  &::after {
-    content: "";
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 18px 18px 18px 0;
-    border-color: transparent #ffffff transparent transparent;
-    position: absolute;
-    left: -17px;
-    top: -3px;
-    z-index: 2;
-  }
-
-  &:hover {
-    color: #333;
-  }
 }
 
 .media {
@@ -166,6 +138,8 @@ body {
 .media-left {
   background: #fff;
   padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .sign-in {
@@ -214,6 +188,9 @@ body {
 @media(min-width: 320px) and (max-width: 500px) {
   .spot-container, .media {
     grid-template-columns: auto;
+  }
+  .media-left {
+    padding: 0;
   }
 }
 

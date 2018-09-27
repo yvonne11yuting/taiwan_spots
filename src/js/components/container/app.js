@@ -6,7 +6,7 @@ import SearchBar from './search_bar';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="main">
         <SearchBar/>
         <ScenicSpots/>
       </div>

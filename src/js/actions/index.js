@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FILTER_SPOTS, REGISTER_MEMBER } from "../constants/action-types";
+import { FILTER_SPOTS, REGISTER_MEMBER, SHOW_SIGN_IN } from "../constants/action-types";
 import { firebase } from '../firebase';
 
 // export function getSpots(id = '') {
@@ -35,4 +35,11 @@ export function registerMember({email, pwd, type}, callback) {
     type: REGISTER_MEMBER,
     payload: request
   };
+}
+
+export function showSignIn(flag) {
+  return {
+    type: SHOW_SIGN_IN,
+    payload: flag
+  }
 }

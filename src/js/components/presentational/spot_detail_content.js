@@ -9,8 +9,8 @@ const SpotDetailContent = ({detail:{ name, images, contentText }}) => {
           images={images}
           title={name}
           alt={`${name}-相關照片`}
-          amount={[1, 5]}
-          width="500"
+          amount={[1]}
+          width="270"
         />
       </div>
       <div className="media-body">

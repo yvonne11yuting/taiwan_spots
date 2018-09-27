@@ -22,7 +22,6 @@ class SpotDetail extends Component {
   render(){
     return (
       <div className="spot-detail">
-        <Link to="/" className="btn-back">返回</Link>
         {
           _.isEmpty(this.props.all) ?
           <Redirect to="/"/> :

@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import SignIn from '../container/sign_in';
-
-
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { showSignIn } from '../../actions';
+import { withRouter } from 'react-router-dom';
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      signInFlag: false
-    }
-  }
-
-
   render() {
+    const { history, location:{ pathname } } = this.props;
+    const isIndex = pathname === "/";
     return (
-      <header className="align-center header">
-        <Link to="/" className="header-title">休假去哪裡！</Link>
-        <a className="btn btn-link" onClick={() => this.setState({signInFlag: true})}>登入</a>
-        { this.state.signInFlag && <SignIn hideSignin={() => this.setState({signInFlag: false})}/> }
-
+      <header className="align-center header sticky-header">
+        <div className="header-title">
+          {!isIndex && (
+            <a title="返回"
+              onClick={history.goBack}>&lt;</a>
+          )}
+          <Link to="/" className="header-title">休假去哪裡！</Link>
+        </div>
+        <a
+          className="btn btn-link header-right"
+          title="記錄你的口袋景點吧！"
+          onClick={() => this.props.showSignIn(true)}
+        >登入</a>
       </header>
     );
   }
 }
 
-export default Header;
+export default withRouter(connect(null, {showSignIn})(Header));

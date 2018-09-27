@@ -29,7 +29,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="align-center">
-        <input type="text"
+        <input type="search"
           value={this.state.term}
           onChange={this.handleChange}
           placeholder="請輸入想去的縣市或景點名稱"

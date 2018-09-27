@@ -12,8 +12,10 @@ const config = {
 firebase.initializeApp(config);
 
 const firebaseDB = firebase.database();
+const firebaseOrigInfo = firebaseDB.ref('origInfo');
+
 
 export {
   firebase,
-  firebaseDB
+  firebaseOrigInfo
 }

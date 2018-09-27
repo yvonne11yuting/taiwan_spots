@@ -7,7 +7,8 @@ class SlideShow extends Component {
 
     this.state = {
       currentImg: 0,
-      movedMargin: 0
+      movedMargin: 0,
+      disabledDirection: null
     };
 
     this.showImages = this.showImages.bind(this);
@@ -21,12 +22,20 @@ class SlideShow extends Component {
     });
   }
 
-  moveImg({moveVal, limitLength, event}) {
+  moveImg({event, moveVal, limitLength}) {
+    let targetElem = event.currentTarget;
     let movedMargin = this.state.movedMargin;
+
     this.setState({
       movedMargin: movedMargin + Number(moveVal)
     });
-    // console.log(event.currentTarget)
+
+    if(Math.abs(movedMargin) === limitLength) {
+      this.setState({disabledDirection: targetElem});
+    } else {
+      this.setState({disabledDirection: null});
+    }
+    console.log(movedMargin, limitLength)
   }
 
   showImages(amount, key) {
@@ -48,20 +57,30 @@ class SlideShow extends Component {
         className="slideshow-container"
       >
         <a
+          ref="arrorLeft"
           className="slideshow-arrow"
-          style={{ height: `${eachImgLength}px` }}
-          onClick={() => this.moveImg({
+          style={{
+            height: `${eachImgLength}px`,
+            pointerEvents: this.state.disabledDirection === this.refs.arrorLeft ? 'none' : 'auto'
+          }}
+          onClick={event => this.moveImg({
+            event,
             moveVal:`${eachImgLength}`,
-            limitLength: 0
+            limitLength: eachImgLength
           })}
         >&lt;</a>
         <a
+          ref="arrorRight"
           className="slideshow-arrow"
-          style={{ height: `${eachImgLength}px`, right: 0 }}
-          onClick={(event) => this.moveImg({
+          style={{
+            height: `${eachImgLength}px`,
+            right: 0,
+            pointerEvents: this.state.disabledDirection === this.refs.arrorRight ? 'none' : 'auto'
+          }}
+          onClick={event => this.moveImg({
+            event,
             moveVal:`-${eachImgLength}`,
-            limitLength: totalImgsLength - eachImgLength,
-            event
+            limitLength: totalImgsLength - eachImgLength * 2
           })}
         >&gt;</a>
         <div
@@ -73,7 +92,8 @@ class SlideShow extends Component {
             style={ {
               width: `${totalImgsLength}px`,
               height: `${eachImgLength}px`,
-              marginLeft: `${this.state.movedMargin}px`
+              marginLeft: `${this.state.movedMargin}px`,
+              transition: 'margin .5s'
             } }
           >
             {matchImages.map((image, i) => (

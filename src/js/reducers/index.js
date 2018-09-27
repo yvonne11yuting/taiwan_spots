@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import reducerSpots from './reducer_spots';
+import { reducer as formReducer } from 'redux-form';
+import spotsReducer from './reducer_spots';
 
 const rootReducer = combineReducers({
-  spots: reducerSpots
+  spots: spotsReducer,
+  form: formReducer
 });
 
 export default rootReducer;

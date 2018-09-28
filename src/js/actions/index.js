@@ -1,16 +1,22 @@
 import axios from 'axios';
-import { FILTER_SPOTS, REGISTER_MEMBER, SHOW_SIGN_IN } from "../constants/action-types";
-import { firebase } from '../firebase';
+import { FETCH_SPOTS, UPDATE_START_AT, FILTER_SPOTS, REGISTER_MEMBER, SHOW_SIGN_IN } from "../constants/action-types";
 
-// export function getSpots(id = '') {
-//   const url = `https://taiwanspots.firebaseio.com/info${id && '/'+id}.json`;
-//   const request = axios.get(url);
+export function fetchSpots(start, end) {
+  const URL = `https://taiwanspots.firebaseio.com/origInfo.json?orderBy=%22index%22&startAt=${start}&endAt=${end}`
+  const request = axios.get(URL);
 
-//   return {
-//     type: GET_SPOTS,
-//     payload: request
-//   };
-// }
+  return {
+    type: FETCH_SPOTS,
+    payload: request
+  };
+}
+
+export function updateStartAt(newStart) {
+  return {
+    type: UPDATE_START_AT,
+    payload: newStart
+  }
+}
 
 export function filterSpots(spots) {
   return {

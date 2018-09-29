@@ -19,6 +19,11 @@ class SpotDetail extends Component {
     this.setState({ detail });
   }
 
+  componentDidUpdate() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
   render(){
     return (
       <div className="spot-detail">

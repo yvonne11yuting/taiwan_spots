@@ -13,6 +13,7 @@ class Header extends Component {
         <div className="header-title">
           {!isIndex && (
             <a title="返回"
+              className="arrow-back"
               onClick={history.goBack}>&lt;</a>
           )}
           <Link to="/" className="header-title">休假去哪裡！</Link>

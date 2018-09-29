@@ -26,13 +26,13 @@ class ScrollBackToTop extends Component {
   }
 
   backToTop() {
-    let scrollTimer = setInterval(scrollAnimation, 10);
+    let scrollTimer = setInterval(scrollAnimation, 1);
     function scrollAnimation() {
       if(document.body.scrollTop === 0 && document.documentElement.scrollTop === 0) {
         clearInterval(scrollTimer);
       }
-      document.body.scrollTop -= 50;
-      document.documentElement.scrollTop -= 50;
+      document.body.scrollTop -= 100;
+      document.documentElement.scrollTop -= 100;
     }
   }
 

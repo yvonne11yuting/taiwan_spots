@@ -31,7 +31,8 @@ class ScenicSpotsEach extends Component {
   }
 
   loadMoreSpots() {
-    let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+    let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    let bottomOfWindow = scrollTop + window.innerHeight > document.documentElement.offsetHeight - 100;
     let end = this.countEnd();
     if(bottomOfWindow) {
       this.props.fetchSpots(this.props.currentStart, end -1);
@@ -50,7 +51,6 @@ class ScenicSpotsEach extends Component {
               alt={spot.name}
               title={spot.name}
               className="spot-image-wrap-img"
-              onError={(e)=> { e.target.onerror = null; e.target.src = "https://dummyimage.com/300x200/cccccc/333333.jpg?text=Something%20Wrong..."}}
             />
           </figure>
         </LazyLoad>

@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { FETCH_SPOTS, UPDATE_START_AT, FILTER_SPOTS, REGISTER_MEMBER, SHOW_SIGN_IN } from "../constants/action-types";
+import {
+  FETCH_SPOTS,
+  UPDATE_START_AT,
+  FILTER_SPOTS,
+  USER_SIGN_IN,
+  USER_REGISTER,
+  SHOW_SIGN_IN } from "../constants/action-types";
+import { firebaseAuth } from '../../js/firebase';
 
 export function fetchSpots(start, end) {
   const URL = `https://taiwanspots.firebaseio.com/origInfo.json?orderBy=%22index%22&startAt=${start}&endAt=${end}`
@@ -25,22 +32,42 @@ export function filterSpots(spots) {
   }
 }
 
-export function registerMember({email, pwd, type}, callback) {
-  const request = type === "register" ?
-  firebase.auth()
-    .createUserWithEmailAndPassword(email, pwd)
-    .then(res => { callback(type, res)})
-    .catch(err => { callback(type, err)})
-  :
-  firebase.auth()
-    .signInWithEmailAndPassword(email, pwd)
-    .then((res) => { callback(type, res)})
-    .catch(err => { callback(type, err)})
-
+function actionSuccess({user}, actionType) {
   return {
-    type: REGISTER_MEMBER,
-    payload: request
+    type: actionType,
+    user
   };
+}
+
+function actionError(err, actionType) {
+  return {
+    type: actionType,
+    err
+  };
+}
+
+export function userSignIn({email, pwd}) {
+  return function(dispatch) {
+    firebaseAuth.signInWithEmailAndPassword(email, pwd)
+      .then(res => {
+        dispatch(actionSuccess(res, USER_SIGN_IN))
+      })
+      .catch(err => {
+        dispatch(actionError(err, USER_SIGN_IN))
+      })
+  }
+}
+
+export function userRegister({email, pwd}) {
+  return function(dispatch) {
+    firebaseAuth.createUserWithEmailAndPassword(email, pwd)
+      .then(res => {
+        dispatch(actionSuccess(res, USER_REGISTER))
+      })
+      .catch(err => {
+        dispatch(actionError(err, USER_REGISTER))
+      })
+  }
 }
 
 export function showSignIn(flag) {

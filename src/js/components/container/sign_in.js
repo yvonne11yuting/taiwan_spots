@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
-import { registerMember, showSignIn } from "../../actions";
+import { userSignIn, userRegister, showSignIn } from "../../actions";
 
 class SignIn extends Component {
   constructor(props) {
@@ -21,13 +21,13 @@ class SignIn extends Component {
     );
   }
 
-  onSubmit(data) {
-    this.props.registerMember({...data}, (res, type, err) => {
-      if(err) {
-        let errMsg = type === 'register' ? '註冊失敗' : '未註冊帳號'
-        alert(errMsg);
-      }
-    });
+  onSubmit({type, ...data}) {
+    if(type === "signin") {
+      this.props.userSignIn(data);
+    } else {
+      this.props.userRegister(data)
+    }
+    this.props.showSignIn(false);
   }
 
   render() {
@@ -55,6 +55,7 @@ class SignIn extends Component {
               })}
             >註冊</button>
             <a className="btn btn-light" onClick={() => this.props.showSignIn(false)}>取消</a>
+            {this.props.errType && (<span className="form-err-msg ml">資料有誤</span>)}
           </div>
         </form>
       </div>
@@ -78,4 +79,10 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: 'register',
-})(connect(null, { registerMember, showSignIn })(SignIn));
+})(connect(({user:{errType}}) => ({
+  errType
+}), {
+  userSignIn,
+  userRegister,
+  showSignIn
+})(SignIn));

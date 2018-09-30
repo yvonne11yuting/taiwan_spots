@@ -36,7 +36,6 @@ class SlideShow extends Component {
     } else {
       this.setState({disabledDirection: null});
     }
-    console.log(movedMargin, limitLength)
   }
 
   showImages(amount, key) {

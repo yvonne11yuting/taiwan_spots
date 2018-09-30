@@ -8,8 +8,8 @@ class Layout extends Component {
   render() {
     return (
       <div>
-        {this.props.children}
         <Header/>
+        {this.props.children}
         { this.props.user.showSignIn && <SignIn/> }
       </div>
     );

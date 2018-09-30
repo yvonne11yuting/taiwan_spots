@@ -5,6 +5,7 @@ import {
   FILTER_SPOTS,
   USER_SIGN_IN,
   USER_REGISTER,
+  USER_SIGN_OUT,
   FETCH_USER,
   SHOW_SIGN_IN } from "../constants/action-types";
 import { firebaseAuth } from '../../js/firebase';
@@ -83,6 +84,14 @@ export function fetchUser() {
     firebaseAuth.onAuthStateChanged(user => {
       dispatch(checkUser(user))
     })
+  }
+}
+
+export function userSignOut() {
+  const request = firebaseAuth.signOut();
+  return {
+    type: USER_SIGN_OUT,
+    payload: request
   }
 }
 

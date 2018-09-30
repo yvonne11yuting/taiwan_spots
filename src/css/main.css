@@ -5,7 +5,7 @@ body {
 }
 
 .main {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .align-center {
@@ -37,6 +37,30 @@ body {
   text-decoration: none;
   color: #fff;
   text-shadow: 0 1px #969696;
+  white-space: nowrap;
+}
+
+.nav-wrap {
+  position: relative;
+}
+
+.nav-list {
+  position: absolute;
+  background: white;
+  padding: 5px;
+  line-height: 2;
+  top: calc(100% + 10px);
+  width: 100%;
+  color: #666;
+  right: 0;
+  box-shadow: 0px 0px 2px #00000029;
+}
+
+.nav-list-item {
+  padding: 5px;
+  &:hover {
+    background: #efefef;
+  }
 }
 
 :focus{
@@ -45,6 +69,11 @@ body {
 
 .arrow-back {
   cursor: pointer;
+  font-size: 20px;
+  padding-left: 20px;
+  text-decoration: none;
+  color: #fff;
+  text-shadow: 0 1px #969696;
 }
 
 .search-bar-input:focus {

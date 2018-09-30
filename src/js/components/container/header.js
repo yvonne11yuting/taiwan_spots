@@ -5,8 +5,15 @@ import { withRouter } from "react-router-dom";
 
 import { showSignIn, fetchUser } from "../../actions";
 import ScrollBackToTop from "../widget/scroll_back_to_top";
+import NavList from "./navlist";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showNavFlag: false
+    }
+  }
   componentDidMount() {
     this.props.fetchUser();
   }
@@ -14,10 +21,14 @@ class Header extends Component {
   signInInfo({ info: { email }, errType }) {
     if (email && !errType) {
       return (
-        <a className="btn btn-link header-right">
-          你好，
-          {email}
-        </a>
+        <div className="nav-wrap btn btn-link header-right"
+          tabIndex="0"
+          onClick={()=> this.setState({showNavFlag: !this.state.showNavFlag})}
+          onBlur={()=> this.setState({showNavFlag: false})}
+          >
+          <span>{email}</span>
+          <NavList show={this.state.showNavFlag}/>
+        </div>
       );
     } else {
       return (
@@ -41,7 +52,7 @@ class Header extends Component {
 
     return (
       <header className="align-center header sticky-header">
-        <div className="header-title">
+        <div>
           {!isIndex && (
             <a title="返回" className="arrow-back" onClick={history.goBack}>
               &lt;

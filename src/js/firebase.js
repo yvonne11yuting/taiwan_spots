@@ -15,9 +15,6 @@ const firebaseAuth = firebase.auth();
 const firebaseDB = firebase.database();
 const firebaseOrigInfo = firebaseDB.ref('origInfo');
 
-const firebaseRegister = firebaseAuth.createUserWithEmailAndPassword;
-const firebaseSignIn = firebaseAuth.signInWithEmailAndPassword;
-
 export {
   firebase,
   firebaseAuth,

@@ -5,6 +5,7 @@ import {
   FILTER_SPOTS,
   USER_SIGN_IN,
   USER_REGISTER,
+  FETCH_USER,
   SHOW_SIGN_IN } from "../constants/action-types";
 import { firebaseAuth } from '../../js/firebase';
 
@@ -67,6 +68,21 @@ export function userRegister({email, pwd}) {
       .catch(err => {
         dispatch(actionError(err, USER_REGISTER))
       })
+  }
+}
+
+function checkUser(user) {
+  return {
+    type: FETCH_USER,
+    user
+  }
+}
+
+export function fetchUser() {
+  return function(dispatch) {
+    firebaseAuth.onAuthStateChanged(user => {
+      dispatch(checkUser(user))
+    })
   }
 }
 

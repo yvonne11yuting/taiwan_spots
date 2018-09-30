@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { showSignIn } from '../../actions';
+import { showSignIn, fetchUser } from '../../actions';
 import ScrollBackToTop from '../../components/widget/scroll_back_to_top';
 
 class Header extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   signInInfo({info:{email}, errType}) {
     if(email && !errType) {
       return (
@@ -46,5 +50,5 @@ class Header extends Component {
 
 export default withRouter(connect(
   ({user}) => ({user}),
-  {showSignIn}
+  {showSignIn, fetchUser}
 )(Header));

@@ -1,4 +1,9 @@
-import { SHOW_SIGN_IN, USER_SIGN_IN, USER_REGISTER } from '../constants/action-types';
+import {
+  SHOW_SIGN_IN,
+  USER_SIGN_IN,
+  USER_REGISTER,
+  FETCH_USER
+} from '../constants/action-types';
 
 export default function(state = {
   showSignIn: false,
@@ -16,10 +21,16 @@ export default function(state = {
         ...state,
         errType: '',
         info: {
-          email: action.user.email,
-          uid: action.user.uid
+          uid: action.user.uid ,
+          email: action.user.email
         }
       }
+
+    case FETCH_USER:
+      return { ...state, info: {
+        uid: action.user.uid ,
+        email: action.user.email }
+      };
 
     case SHOW_SIGN_IN:
       return { ...state, showSignIn: action.payload };

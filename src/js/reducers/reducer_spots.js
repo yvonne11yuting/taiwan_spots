@@ -1,4 +1,9 @@
-import { FETCH_SPOTS, UPDATE_START_AT, FILTER_SPOTS } from '../constants/action-types';
+import {
+  FETCH_SPOTS,
+  UPDATE_START_AT,
+  FILTER_SPOTS,
+  STORE_FAVORITE
+} from '../constants/action-types';
 
 export default function(state = {
   all: [],
@@ -15,7 +20,13 @@ export default function(state = {
       return { ...state, currentStart: action.payload };
 
     case FILTER_SPOTS:
-      return { ...state, filterResult: action.payload }
+      return { ...state, filterResult: action.payload };
+
+    case STORE_FAVORITE:
+      let favoriteList = {};
+      console.log(action.spotId);
+      favoriteList[action.uid] = [action.spotId];
+      return { ...state, favoriteList}
   }
   return state;
 }

@@ -3,6 +3,7 @@ import {
   FETCH_SPOTS,
   UPDATE_START_AT,
   FILTER_SPOTS,
+  STORE_FAVORITE,
   USER_SIGN_IN,
   USER_REGISTER,
   USER_SIGN_OUT,
@@ -99,5 +100,12 @@ export function showSignIn(flag) {
   return {
     type: SHOW_SIGN_IN,
     payload: flag
+  }
+}
+
+export function storeFavorite({uid, spotId}) {
+  return {
+    type: STORE_FAVORITE,
+    uid, spotId
   }
 }

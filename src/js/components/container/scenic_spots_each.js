@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchSpots, updateStartAt } from '../../actions';
+import { fetchSpots, updateStartAt, storeFavorite } from '../../actions';
 class ScenicSpotsEach extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +13,7 @@ class ScenicSpotsEach extends Component {
 
     this.countEnd = this.countEnd.bind(this);
     this.loadMoreSpots = this.loadMoreSpots.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
   }
 
   componentDidMount() {
@@ -40,10 +41,20 @@ class ScenicSpotsEach extends Component {
     }
   }
 
+  addFavorite(e, spotId) {
+    e.preventDefault();
+    this.props.storeFavorite({
+      uid: this.props.uid,
+      spotId
+    });
+  }
+
   renderSpots(spot) {
     return (
       <Link key={spot.id} className="spot" to={`/${spot.id}`} title={spot.name}>
-        <span className="favorite">&#x02606;</span>
+        <span
+          className="favorite"
+          onClick={e => this.addFavorite(e, spot.id)}>&#x02606;</span>
         <LazyLoad height={200} once>
           <figure className="spot-image-wrap align-center">
             <img
@@ -73,13 +84,18 @@ class ScenicSpotsEach extends Component {
 };
 
 
-function mapStateToProps({ spots: { all, filterResult, currentStart } }) {
+function mapStateToProps({ spots:{
+  all,
+  filterResult,
+  currentStart,
+  favoriteList
+}, user: { info: { uid } } }) {
   let spots = filterResult || all;
-  return { spots, currentStart };
+  return { spots, currentStart, uid, favoriteList };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchSpots, updateStartAt }, dispatch);
+  return bindActionCreators({ fetchSpots, updateStartAt, storeFavorite }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScenicSpotsEach);

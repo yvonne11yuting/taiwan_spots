@@ -6,7 +6,7 @@ export default function(state = {
 }, action) {
   switch(action.type) {
     case FETCH_SPOTS:
-      let data = action.payload.data;
+      let { data } = action.payload;
       let newAllAry = Object.keys(data).map(id => data[id]);
       let { all } = state;
       return { ...state, all: all.concat(newAllAry) };

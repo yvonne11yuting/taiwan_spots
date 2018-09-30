@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from '../components/presentational/header';
-import SignIn from '../components/container/sign_in';
+import Header from './header';
+import SignIn from './sign_in';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -16,8 +16,8 @@ class Layout extends Component {
   }
 }
 
-function mapStateToProps({user}) {
-  return {user}
-}
-
-export default withRouter(connect(mapStateToProps)(Layout));
+export default withRouter(
+  connect(({user}) => ({
+    user
+  }))(Layout)
+  );

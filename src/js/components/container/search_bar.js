@@ -40,7 +40,6 @@ class SearchBar extends Component {
   }
 }
 
-// export default SearchBar;
 const mapStateToProps = ({spots}) => {
   return { spots };
 }

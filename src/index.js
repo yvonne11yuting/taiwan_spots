@@ -7,9 +7,9 @@ import ReduxThunk from 'redux-thunk';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import reducers from './js/reducers';
-import App from './js/components/container/app';
+import App from './js/components/presentational/app';
 import SpotDetail from './js/components/container/spot_detail';
-import Layout from './js/hoc/layout';
+import Layout from './js/components/container/layout';
 
 import './css/main.css';
 
